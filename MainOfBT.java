@@ -166,7 +166,23 @@ public class MainOfBT {
             }
         }
         return ans;
-
     }
 
+    /**
+     * How many leaves are there in the tree between the min level (not inclusive) and the max level (inclusive). Note that the root is at level 0.
+     */
+     public static <T> int q9(BinaryTree<T> bt, int min, int max){
+        if(height(bt) < max){max = height(bt);}
+        return LeavesInLevel(bt,0,max) - LeavesInLevel(bt,0,min);
+    }
+    
+    // calculate how many leaves are exist up to given level
+    public static int LeavesInLevel(BinaryTree bt, int n, int m) {
+      if(bt == null ){return 0;}
+      if(bt.getRight() == null && bt.getLeft() == null && n<=m){return 1;}
+      else{
+          return LeavesInLevel(bt.getLeft(), n+1,m) + LeavesInLevel(bt.getRight(), n+1,m);
+      }
+    }
+    
 }

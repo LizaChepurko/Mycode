@@ -190,6 +190,28 @@ public class MainOfBT {
         return ans;
     }
 
+     /**
+     * Returns an ArrayList of the left sons only
+     * inOrder sortes
+     */
+    public static <T> ArrayList<T> arrOfLeftSons(BinaryTree<T> bt){
+        ArrayList<T> ans = new ArrayList<>();
+        return arrOfLeftSonsH(bt,ans);
+    }
+
+    private static <T> ArrayList<T> arrOfLeftSonsH(BinaryTree<T> bt, ArrayList<T> ans) {
+        if(bt == null){return ans;}
+        else{
+            arrOfLeftSonsH(bt.getLeft(),ans);
+             if(bt.getLeft() != null){
+                ans.add(bt.getLeft().getRoot());
+            }
+            arrOfLeftSonsH(bt.getRight(),ans);
+
+        }
+        return ans;
+    }
+
     /**
      * How many leaves are there in the tree between the min level (not inclusive) and the max level (inclusive). Note that the root is at level 0.
      */

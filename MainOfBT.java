@@ -40,6 +40,7 @@ public class MainOfBT {
             return l+r;
             }
     }
+    
     /**
      *This function returns an ArrayList of all the leaves in even levels. 
      * NOTE: the lower level is zero.
@@ -192,7 +193,7 @@ public class MainOfBT {
 
      /**
      * Returns an ArrayList of the left sons only
-     * inOrder sortes
+     * InOrder sortes
      */
     public static <T> ArrayList<T> arrOfLeftSons(BinaryTree<T> bt){
         ArrayList<T> ans = new ArrayList<>();
@@ -208,6 +209,30 @@ public class MainOfBT {
             }
             arrOfLeftSonsH(bt.getRight(),ans);
 
+        }
+        return ans;
+    }
+     /**
+     * Return an ArrayList of expandable node
+     * InOrder sorted
+     * Expandable node: node that has less the two sons.
+     */
+    public static <T> ArrayList<T> arrOfexpandable(BinaryTree<T> bt){
+        ArrayList<T> ans = new ArrayList<>();
+        return arrOfexpandableH(bt,ans);
+    }
+
+    private static <T> ArrayList<T> arrOfexpandableH(BinaryTree<T> bt, ArrayList<T> ans) {
+        if(bt == null){return ans;}
+        if(bt.getLeft() != null || bt.getRight() != null){
+            arrOfexpandableH(bt.getLeft(),ans);
+            if(isExpandable(bt)){
+                ans.add(bt.getRoot());
+            }
+            arrOfexpandableH(bt.getRight(),ans);
+        }
+        if(bt.isLeaf()){
+            ans.add(bt.getRoot());
         }
         return ans;
     }

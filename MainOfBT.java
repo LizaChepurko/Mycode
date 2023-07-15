@@ -167,6 +167,28 @@ public class MainOfBT {
         }
         return ans;
     }
+     /**
+     * Returns an ArrayList of the left leaves only
+     */
+    public static <T> ArrayList<T> arrOfLeftLeaves(BinaryTree bt){
+        ArrayList<T> ans = new ArrayList<>();
+        return arrOfLeftLeavesH(bt,ans);
+    }
+
+    private static <T> ArrayList<T> arrOfLeftLeavesH(BinaryTree<T> bt, ArrayList<T> ans) {
+        if(bt == null) {return ans;}
+        if(bt.getLeft()!=null && bt.getLeft().isLeaf()) {
+                ans.add(bt.getLeft().getRoot());
+                if(bt.getRight()!=null){
+                    return arrOfLeftLeavesH(bt.getRight(), ans);
+                }
+        }
+        else{
+           arrOfLeftLeavesH(bt.getLeft(), ans);
+           arrOfLeftLeavesH(bt.getRight(), ans);
+        }
+        return ans;
+    }
 
     /**
      * How many leaves are there in the tree between the min level (not inclusive) and the max level (inclusive). Note that the root is at level 0.

@@ -193,7 +193,7 @@ public class MainOfBT {
 
      /**
      * Returns an ArrayList of the left sons only
-     * InOrder sortes
+     * InOrder sorted
      */
     public static <T> ArrayList<T> arrOfLeftSons(BinaryTree<T> bt){
         ArrayList<T> ans = new ArrayList<>();
@@ -235,6 +235,15 @@ public class MainOfBT {
             ans.add(bt.getRoot());
         }
         return ans;
+    }
+
+    private static<T> boolean isExpandable(BinaryTree<T> bt){
+        if(bt.getLeft() != null && bt.getRight() !=null){
+            return false;
+        }
+        else{
+            return true;
+        }
     }
 
     /**
